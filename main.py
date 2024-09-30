@@ -25,7 +25,7 @@ def get_by_category():
     return res
 
 
-@app.post('/api/get_link', response_model=str)
+@app.post('/api/get_link')
 async def get_link(data: LinkModel):
     prices = [LabeledPrice(label=f"{d['name']} X{d['qual']}", amount=d['amount'] * 100) for d in data.products]
     if len(prices) > 0:
