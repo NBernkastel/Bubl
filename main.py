@@ -30,13 +30,15 @@ async def get_link(data: LinkModel):
     prices = [LabeledPrice(label=f"{d['name']} X{d['qual']}", amount=d['amount'] * 100) for d in data.products]
     if len(prices) > 0:
         invoice_link = await bot.create_invoice_link(
-            title='Билет на спектакль',
-            description=f'Место',
-            payload="hui",
+            title='BubbleHub',
+            description=f'Заказ Либнехта',
+            payload="Данные",
             provider_token=secrets.KASSA_TOKEN,
             currency='rub',
             prices=prices,
             need_name=True,
+            max_tip_amount=100000,
+            suggested_tip_amounts=[2000,5000, 10000, 20000],
             need_phone_number=True,
             request_timeout=60,
         )
