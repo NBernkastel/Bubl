@@ -34,12 +34,11 @@ async def get_link(data: LinkModel):
             description=f'Место',
             payload="hui",
             provider_token=secrets.KASSA_TOKEN,
-            photo_url='https://wsyrqowenkpaazbnzxxk.supabase.co/storage/v1/object/sign/photo/cover.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwaG90by9jb3Zlci5wbmciLCJpYXQiOjE3MjU4MTQ1ODQsImV4cCI6MTc1NzM1MDU4NH0.NdeHZ9hGr4vFi3WJFFp955wn26-qg7pHzMm13CK9pFU&t=2024-09-08T16%3A56%3A23.972Z',
             currency='rub',
             prices=prices,
             need_name=True,
             need_phone_number=True,
             request_timeout=60,
         )
-        return invoice_link
+        return {"link":invoice_link}
     return HTTPException(detail="Wrong data", status_code=status.HTTP_400_BAD_REQUEST)
