@@ -26,7 +26,8 @@ def get_by_category():
 
 @app.post('/api/get_link', response_model=str)
 async def get_link(data: LinkModel):
-    prices = [LabeledPrice(label=f"{d['name']} X{d['qual']}", amount=d['amount']) for d in data.products]
+    prices = [LabeledPrice(label=f"{d['name']} X{d['qual']}", amount=d['amount']*100) for d in data.products]
+    print(prices)
     invoice_link = await bot.create_invoice_link(
         title='Билет на спектакль',
         description=f'Место',
